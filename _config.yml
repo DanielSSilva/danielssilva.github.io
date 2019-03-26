@@ -25,8 +25,8 @@ description: This is a blog where I share my findings, what I'm doing and how I'
 navbar-links:
   About: "about"
   Posts:
-    - PowerShell: "https://danielssilva.dev/#PowerShell"
-    - RaspberryPi: "https://danielssilva.dev/#RaspberryPi"
+    - PowerShell: "https://danielssilva.dev/tags/#PowerShell"
+    - RaspberryPi: "https://danielssilva.dev/tags/#RaspberryPi"
     #- C#: "http://www.markdowntutorial.com/#CSharp"
     #- SQL: 
 
