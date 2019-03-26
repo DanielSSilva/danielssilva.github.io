@@ -13,4 +13,4 @@ I really enjoy to help the others and give back to the community whenever/howeve
 Feel free to contact me through the contacts at the bottom of this page.
 
 ### Icons licensing
-The icons used on my blog are downloaded from [font-awesome](https://fontawesome.com/license).
+The icons used on my blog are provided by [font-awesome](https://fontawesome.com/license).

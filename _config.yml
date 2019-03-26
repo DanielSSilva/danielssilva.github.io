@@ -5,7 +5,7 @@
 
 # If you are building a simple GitHub user page (https://username.github.io) then use these settings:
 url: "https://danielssilva.dev"
-baseurl: "/"
+#baseurl: "/"
 
 # If you are building a GitHub project page then use these settings:
 #url: "http://username.github.io/projectname"
@@ -27,9 +27,8 @@ navbar-links:
   Posts:
     - PowerShell: "https://danielssilva.dev/#PowerShell"
     - RaspberryPi: "https://danielssilva.dev/#RaspberryPi"
-    - C#: "http://www.markdowntutorial.com/#CSharp"
-    #- SQL: "https://pages.github.com/"
-  #Author's home: "http://deanattali.com"
+    #- C#: "http://www.markdowntutorial.com/#CSharp"
+    #- SQL: 
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
