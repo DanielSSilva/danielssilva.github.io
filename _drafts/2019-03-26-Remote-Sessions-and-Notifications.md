@@ -101,7 +101,7 @@ Again, you will be asked to input the password of the **TARGET** machine. You sh
 The final script, for this case, is that what you can see on the initial screenshot. I'll leave it here.
 
 ```powershell
-$session = New-PSSession -HostName "192.168.1.69" -Username "Daniel"
+$session = New-PSSession -HostName "192.168.1.69" -Username "daniel"
 $scriptBlock = {
     Import-Module PoshNotify
     Send-OSNotification -Title "LED" -Body "Someone left the led ON!"
@@ -110,6 +110,8 @@ if((Get-GpioPin -Id 8).Value -eq 'High'){
     Invoke-Command -Session $session -ScriptBlock $scriptBlock
 }
 ```
+![](/img/RemoteSessions_Notifications/final_notification.png)
+
 
 # Wrapping it up
 Hopefully you were able to successfully follow everything we've seen here. If you have questions/comments/feedback, hit me up on [twitter](https://twitter.com/DanielSilv9) (at least until I have a "comments" section)
