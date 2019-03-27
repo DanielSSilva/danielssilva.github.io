@@ -60,7 +60,8 @@ What can we do with PSSession? `Get-Help *PSSession*` gives us all the cmdlets w
 
 ![](/img/RemoteSessions_Notifications/Get_help_psSession.png)
 
-**NOTE**: Notice that in this case I've used `*` between the `PSSession` so that I catch everything that has the word `PSSession`.
+{: .box-note}
+**Note:** Notice that in this case I've used `*` between the `PSSession` so that I catch everything that has the word `PSSession`.
 
 In this case, seems that `New-PSSession` will do the job
 

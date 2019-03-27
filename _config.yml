@@ -23,12 +23,14 @@ description: This is a blog where I share my findings, what I'm doing and how I'
 
 # List of links in the navigation bar
 navbar-links:
-  About: "about"
   Posts:
     - PowerShell: "https://danielssilva.dev/tags/#PowerShell"
     - RaspberryPi: "https://danielssilva.dev/tags/#RaspberryPi"
     #- C#: "http://www.markdowntutorial.com/#CSharp"
     #- SQL: 
+  References: "references"
+  About: "about"
+  
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
