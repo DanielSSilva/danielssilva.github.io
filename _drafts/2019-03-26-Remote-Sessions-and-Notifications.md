@@ -55,13 +55,13 @@ Invoke-Command [[-Session] <PSSession[]>] [-ScriptBlock] <scriptblock>
 
 Seems that it allows us to pass an array of sessions and a script block.
 
-### PSSession
+### The PSSession Parameter
 What can we do with PSSession? `Get-Help *PSSession*` gives us all the cmdlets with PSSession in the name
 
 ![](/img/RemoteSessions_Notifications/Get_help_psSession.png)
 
 {: .box-note}
-**Note:** Notice that in this case I've used `*` between the `PSSession` so that I catch everything that has the word `PSSession`.
+**Note:** Notice that in this case I've putted the `PSSession` between `*` so that I catch everything that has the word `PSSession`.
 
 In this case, it seems that `New-PSSession` will do the job.
 
