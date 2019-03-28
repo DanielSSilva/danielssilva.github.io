@@ -83,7 +83,7 @@ This pretty much it. Pretty simple right? Now that you can control the GPIO, spr
 What's the output? Something like this:
 ![notification](/img/Getting_started_with_PowerShell_Raspberry/notification.png)
 
-Want to know how that can be achieved? I'll leave that to another post.
+Want to know how that can be achieved? I'll leave that to [another post]({{ site.baseurl }}{% post_url 2019-03-28-Remote-Sessions-and-Notifications %}).
 
 # Other projects
 
