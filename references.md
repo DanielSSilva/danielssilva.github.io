@@ -14,6 +14,12 @@ In this section you can find the links for my GitHub projects, youtube links for
 
 # Presentations
 
+## Upcoming
+
+* [PSConfEU](http://sessions.eventraft.com/psconfeu)
+
+## Previous
+
 ### DuPSUG
 * [Presentation](https://youtu.be/1_IJou8ntZo)
 * [Slides](https://github.com/DuPSUG/DuPSUG12/tree/master/Daniel%20Silva)
