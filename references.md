@@ -16,13 +16,20 @@ In this section you can find the links for my GitHub projects, youtube links for
 
 ## Upcoming
 
-* [PSConfEU](http://sessions.eventraft.com/psconfeu)
+* Want me to talk at your user group? reach out to me via [Twitter](https://twitter.com/DanielSilv9)
+
 
 ## Previous
 
+### PSConfEU
+* [PowerShell on RaspberryPi - Let's open a door for your PowerShell ideas](https://www.youtube.com/watch?v=DMQC2ErWaq8)
+* Control sensors and chips using PowerShell - Not yet live
+* [Material](https://github.com/psconfeu/2019/tree/master/sessions/Daniel%20Silva)
+
 ### DuPSUG
 * [Presentation](https://youtu.be/1_IJou8ntZo)
-* [Slides](https://github.com/DuPSUG/DuPSUG12/tree/master/Daniel%20Silva)
+* [Material](https://github.com/DuPSUG/DuPSUG12/tree/master/Daniel%20Silva)
+
 
 ### PSPowerHour
 * [Presentation](https://www.youtube.com/watch?v=fDQvdIEda_c&feature=youtu.be&t=54m38s)
@@ -30,6 +37,6 @@ In this section you can find the links for my GitHub projects, youtube links for
 
 ### ANZPSUG
 * [Presentation](https://youtu.be/5m9PnWBF1vI)
-* [Slides](https://github.com/ANZPSUG/Presentations/tree/master/2018-07%20-%20Daniel%20Silva%20-%20PowerShell%20Core%20%26%20RaspberryPi)
+* [Material](https://github.com/ANZPSUG/Presentations/tree/master/2018-07%20-%20Daniel%20Silva%20-%20PowerShell%20Core%20%26%20RaspberryPi)
 
 
