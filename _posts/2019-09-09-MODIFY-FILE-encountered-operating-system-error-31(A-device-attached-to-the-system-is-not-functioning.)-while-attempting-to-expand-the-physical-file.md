@@ -8,7 +8,7 @@ comments: true
 I use a Mac as my development machine. As you might or might not now, SQL Server is not available for macOS. Instead, you need to use docker and have a container to hold your instance.
 The whole Docker world is new to me, and every day I'm learning more and more things about it.
 
-Recently I was testing my backup/restore procedure and I this weird error:
+Recently I was testing my backup/restore procedure and I had this weird error:
 
 `MODIFY FILE encountered operating system error 31(A device attached to the system is not functioning.) while attempting to expand the physical file '/var/opt/mssql/data/myDatabase.mdf'.`
 
