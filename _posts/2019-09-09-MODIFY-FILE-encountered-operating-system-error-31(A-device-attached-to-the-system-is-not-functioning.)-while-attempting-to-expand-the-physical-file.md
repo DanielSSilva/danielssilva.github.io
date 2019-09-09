@@ -34,7 +34,7 @@ docker run \
     -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 ### Quick explanation
-This creates a container with a volume `sqldata1` that maps `/var/opt/mssql`, and another volume that maps my folder `/Users/daniel/Documents/Work/databaseBackups` to a folder `/backup` on the container.
+This command creates a container that holds an image of Ubuntu and it has SQL Server2019 installed. It's mounted with a volume `sqldata1` that maps `/var/opt/mssql`, and another volume that maps my folder `/Users/daniel/Documents/Work/databaseBackups` to a folder `/backup` on the container.
 
 # Looking for help
 Because I am not familiar with backup/restores (and especially not with this error), I asked some folks for help and also jumped into google to look out for answers for such a similar problem.
