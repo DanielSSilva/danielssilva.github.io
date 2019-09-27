@@ -16,14 +16,17 @@ In this section you can find the links for my GitHub projects, youtube links for
 
 ## Upcoming
 
-* Want me to talk at your user group? reach out to me via [Twitter](https://twitter.com/DanielSilv9)
+* Want me to talk at your user group? reach out to me via [Twitter](https://twitter.com/DanielSilv9) or [create an issue on my GitHub repo](https://github.com/DanielSSilva/Presentations/issues)!
 
 
 ## Previous
 
+### SQLPort
+* [Setting up and developing SQLServer on non-Windows OS](https://github.com/DanielSSilva/Presentations/tree/master/2019_09_24%20-%20Setting%20up%20and%20developing%20SQLServer%20on%20non-Windows%20OS) - This session was not recorded, but the slides and the Notebook are on my repo.
+
 ### PSConfEU
 * [PowerShell on RaspberryPi - Let's open a door for your PowerShell ideas](https://www.youtube.com/watch?v=DMQC2ErWaq8)
-* Control sensors and chips using PowerShell - Not yet live
+* [Control sensors and chips using PowerShell](https://www.youtube.com/watch?v=S17dT1mQLGI)
 * [Material](https://github.com/psconfeu/2019/tree/master/sessions/Daniel%20Silva)
 
 ### DuPSUG
