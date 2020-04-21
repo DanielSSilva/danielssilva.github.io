@@ -15,24 +15,17 @@ Even though I've never contributed to the project, I've always kept an eye on it
 I usually have to analyse logs in order to perform some C#/SQL troubleshooting/debugging/performance tuning.
 The approach that I usually take is to use Excel and import the log file as a table, so that I can filter, highlight and so on.
 
-For most of the times, this just works and I can get my job done.
+For most of the times, this is enough and I can get my job done.
 But there were times that I've struggled when trying to filter for more than one condition on same column, some issues with sorting, wrong data types, etc.
 
 ## But there's more
 
-I've decided that I wanted to learn more about Linux and because (for me) the best way to learn something e by using it and investigating, I've installed Ubuntu to be my daily driver.
+I've decided that I want to learn more about Linux and because (for me) the best way to learn something is by use and investigating, I've installed Ubuntu to be my daily driver.
 
-Fortunately, one can now easily use SQL Server on Linux, as well as dotnet. 
-I've been using a docker container with SQL Server, and for that reason the installation and database restore were really easy and fast to get working (hint: there will probably be a _dbatools isn't just for DBAs part 2 - Backup and Restore_).
+Fortunately, one can now easily use SQL Server on Linux, as well as .NET and PowerShell. 
+I've been using a docker container with SQL Server, and for that reason the installation and database restore were really easy and fast to get working (hint: I will probably write a _dbatools isn't just for DBAs part 2 - Backup and Restore_).
 
 After setting everything, I had to analyse a log and, to my surprise, I couldn't find that Excel feature that I was used to in LibreOffice . I've decided to try OpenOffice, but the result was the same.
-
----
-**NOTE**
-
-From a quick search, it seems that there are some kind of data tables that can be populated from files so I assume that with some more investigation, one can probably achieve something similar.
-
----
 
 # Ok so what now? - The solution
 
@@ -56,7 +49,7 @@ I suggest you take a look at `Import-Csv` [documentation](https://docs.dbatools.
 Let me show you the final execution, and we will break it down to understand what it's doing:
 
 ```powershell
-Import-DbaCsv -Path '/media/daniel/Data/logs/logExample.log' -Delimiter '|' -SqlInstance "Localhost" -SqlCredential $credentials -Database 'LogHolder' -Table 'Logs' 
+Import-DbaCsv -Path '/media/daniel/Data/logs/logExample.log' -Delimiter '|' -SqlInstance "Localhost" -SqlCredential $credentials -Database 'LogHolder' -AutoCreateTable
 ```
 
 * `Path`: As the name implies, this is the path for the log file. Notice that it accepts an `Object[]`, meaning you can pass multiple files to be processed;
@@ -64,12 +57,12 @@ Import-DbaCsv -Path '/media/daniel/Data/logs/logExample.log' -Delimiter '|' -Sql
 * `SqlInstance`: The instance you will target to write the content; 
 * `SqlCredential`: A `PSCredential` object which holds the credentials to get access to the instance;
 * `Database`: The target database on which the content will be written.
-* `Table`: The target table to which the content will be written.
-* `AutoCreateTable`: Here's something really cool about this one - Let's say that you don't care about the attributes type (whether it's a `nvarchar`, a `datatimeoffset`, etc), or you don't want to create the table manually because your csv contains 30 columns and you just want a quick way to dump and analyse the information. You can use the `-AutoCreateTable` switch, which, as a the name implies, will create  the table for you, with the columns you have on your csv. If you don't specify a `Table` name, it will create the table with the name of your csv file
+* `AutoCreateTable`: Here's something really cool about this one - Let's say that you don't care about the attributes type (whether it's a `nvarchar`, a `datatimeoffset`, etc), or you don't want to create the table manually because your csv contains 30 columns and you just want a quick way to dump and analyse the information. You can use the `-AutoCreateTable` switch, which, as the name implies, will create the table for you, with the columns you have on your csv. If you don't specify a `Table` name, it will create the table with the name of your csv file
+* `Table`: The target table to which the content will be written. Although it's not present here, it will be used later.
 
 ## Let's look at some examples
 
-For this case, we will use a log that I've generated. It has some columns that are usually useful for a dotnet api log. Not that this is some random non-sense generated data.
+For this case, we will use a log that I've generated. It has some columns that are usually useful for a dotnet api log. Note that this is some random non-sense generated data.
 
 <script src="https://gist.github.com/DanielSSilva/3d6e8b1b64722130dc9aa61f28084977.js"></script>
 
@@ -95,8 +88,8 @@ Here's the result of that execution:
 ![import-dbacsv_1stIteration](/img/dbatools-isn-t-just-for-DBAs/import-dbacsv_1stIteration.png)
 
 Interesting/Relevant points:
-* Notice the `Table` name on the output. As I've said, it the table name has the same name as the log file because we haven't specified a table name. 
-* If gives us the information of how many rows were copied, plus at which "rate" it wrote (notice the 51 RowsPerSecond)
+* Notice the `Table` name on the output. As I've said, the table name has the same name as the log file because we haven't specified a table name. 
+* It gives us the information of how many rows were copied, plus at which "rate" it wrote (notice the 51 RowsPerSecond)
 
 Let's take a look at our table, shall we?
 
@@ -153,6 +146,8 @@ How long do you think that it will take (on my machine) to import 2 million reco
 ![multipliedMultiplied](/img/dbatools-isn-t-just-for-DBAs/multipliedMultiplied.png)
 
 39.39 seconds to copy 2.000.400 rows, at a rate of 50785 rows per second. Still pretty amazing if you ask me!
+
+There's also a `-BatchSize` parameter that you can explore and try to take the most of it.
 
 ### Querying our Logs 
 
@@ -297,6 +292,6 @@ This blog post became longer than I anticipated, but the idea here is not to dis
 There are 3 main purposes here:
 * Even if you are not a DBA, you can leverage from dbatools
 * If you are not on Windows, or don't feel familiar with the named tools to analyse logs, SQL can be an option (if you read until this point, I assume you are comfortable with SQL).
-* Import-dbacsv combined with SQL Querying can scale pretty easily and (probably) even save you tons of time if you are always looking at the same points.
+* Import-DbaCsv combined with SQL Querying can scale pretty easily and (probably) even save you tons of time if you are always looking at the same points.
 
 Hope that you find this useful, and thanks for reading!
