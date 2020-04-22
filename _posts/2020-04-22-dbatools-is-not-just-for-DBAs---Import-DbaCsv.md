@@ -112,7 +112,8 @@ $originalFilePath = '/media/daniel/Data/logs/logExample.log'
 $copyFilePath = '/media/daniel/Data/logs/logExampleMultiplied.log' 
 Copy-Item -Path $originalFilePath -Destination $copyFilePath
 Out-File $copyFilePath -Append -InputObject " " #force a new line, so that when we append the info, it will be appended to the beginning of a new line
-1..5000 | foreach-object { Get-Content $originalFilePath | Select-Object -Skip 1 } | Out-File $copyFilePath -Append #Select-Object -Skip 1 allows us to copy everything other than the header
+1..5000 | foreach-object { Get-Content $originalFilePath | Select-Object -Skip 1 } | Out-File $copyFilePath -Append 
+#Select-Object -Skip 1 allows us to copy everything other than the header
 ```
 
 So, our original sample has 8 lines, now we've multiplied that by 5000, which means we will add 40000. In total, we will add 40008 new records. Let's see how it behaves now.
@@ -147,7 +148,7 @@ How long do you think that it will take (on my machine) to import 2 million reco
 
 39.39 seconds to copy 2.000.400 rows, at a rate of 50785 rows per second. Still pretty amazing if you ask me!
 
-There's also a `-BatchSize` parameter that you can explore and try to take the most of it.
+There's also a `-BatchSize` parameter that you can explore and try to improve the time even more.
 
 ### Querying our Logs 
 
@@ -191,6 +192,7 @@ Msg 8117, Level 16, State 1, Line 1
 Operand data type varchar(max) is invalid for avg operator.
 Total execution time: 00:00:00.001
 ```
+
 Ups... What's wrong?
 
 ## About the defaults
@@ -229,7 +231,7 @@ ALTER TABLE logExample
 ALTER COLUMN UserIdentity BIGINT
 ```
 
-By running this and rerunning the query, we already have the expected result
+By running this and rerunning the query, we will get the expected result
 
 ![averageTime](/img/dbatools-isn-t-just-for-DBAs/averageTime.png)
 
@@ -283,13 +285,15 @@ DECLARE @totalFriends INT = (
 SELECT 'The request was made by a user named ' + @userName + '. User 3 has ' + CAST(@totalFriends AS nvarchar(10)) + ' friends.'
 ```
 
+![finalQuery](/img/dbatools-isn-t-just-for-DBAs/finalQuery.png)
+
 Although the SQL code seems more verbose, I still consider it to be better, because you can save the query and re-use it whenever necessary, only having to adjust some parameters.
 
 # Conclusion
 
-This blog post became longer than I anticipated, but the idea here is not to discuss Excel/LibreOffice/OpenOffice vs SQL.
+This blog post became longer than I anticipated, but the main idea here is not to discuss Excel/LibreOffice/OpenOffice vs SQL.
 
-There are 3 main purposes here:
+3 main points to be highlighted:
 * Even if you are not a DBA, you can leverage from dbatools
 * If you are not on Windows, or don't feel familiar with the named tools to analyse logs, SQL can be an option (if you read until this point, I assume you are comfortable with SQL).
 * Import-DbaCsv combined with SQL Querying can scale pretty easily and (probably) even save you tons of time if you are always looking at the same points.
