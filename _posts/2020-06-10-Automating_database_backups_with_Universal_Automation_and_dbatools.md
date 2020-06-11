@@ -13,31 +13,31 @@ And that's exactly what we will be exploring today.
 
 # Before we start - Let's understand the product naming
 
-This might sound irrelevant for now, but you will understand in a minute why I'm referring this.
+This might sound irrelevant for now, but you will understand in a minute why I'm mentioning this.
 
-The first time I've heard about an Ironman Sofware product it was the [Universal Dashboard (UD)](https://docs.universaldashboard.io/).
-In the meantime, another product surfaced: the Universal Automation.
+The first time I heard about an Ironman Software product it was the [Universal Dashboard (UD)](https://docs.universaldashboard.io/).
+In the meantime, another product surfaced: Universal Automation.
 
 When searching for these products, you will find a note saying that these products (UA and UD) are part of something called [PowerShell Universal](https://ironmansoftware.com/powershell-universal/).
 
-## So whats Universal ?
+## So what is Universal?
 
 Universal is, at the time of this writing, a combination of 3 products:
 * [Universal API](https://docs.ironmansoftware.com/api/about) - "(...) provides the ability to define REST API endpoints using PowerShell"
 * [Universal Automation](https://ironmansoftware.com/universal-automation/) - "Universal Automation is the ultra-fast, simple, and lightweight automation platform for PowerShell."
 * [Universal Dashboard](https://ironmansoftware.com/powershell-universal-dashboard/) - "Build web pages with PowerShell. No HTML or JavaScript required."
 
-So, this means that Universal is the way to go. From my understanding there won't be any maintenance (bug fixes, features, etc) on each individual product, only on the Universal itself.
+This means that Universal is the way to go. From my understanding there won't be any maintenance (bug fixes, features, etc) on each individual product, only on the Universal itself.
 
 ## "If that's the way to go, why are you showing Universal Automation?"
 
-At the time of this writing, the current Universal version is the 1.2.0 and I cannot get the it product to run on my Ubuntu 20.04.
-The docs state that, for Linux, the validated distribution is Ubuntu 18.04, so hopefully in a next version I will be able to run it.
+At the time of this writing, the current Universal version is the 1.2.0 and I cannot get it to run on my Ubuntu 20.04.
+The docs state that, for Linux, the validated distribution is Ubuntu 18.04, so hopefully in the next version I will be able to run it.
 
 My first thought was that I could probably create a Ubuntu 18.04 container, install Universal and run it from a container. But... I'm not familiar with that part of Docker.
 
 Doing a quick search, I've found that they provide a [Docker image for Universal Automation](https://hub.docker.com/r/ironmansoftware/universalautomation/tags).
-Well, it's not Universal, but since I'm only interested on UA, I'll take that.
+Well, it's not Universal, but since I'm only interested in UA, I'll take that.
 What you will see here, won't be much different from what you can see in Universal.
 
 # Installing Universal (Automation)
@@ -62,7 +62,7 @@ In case you are not familiar with docker, this command will:
 
 We can then confirm that UA is running by launching `http://localhost:8080/` on our browser.
 
-I recommend that you check [Introducing Universal Automation](https://www.youtube.com/watch?v=u9Hq4X8V7VY) so that you get familiar with the environment and understand the possibilities.
+I recommend that you check [Introducing Universal Automation](https://www.youtube.com/watch?v=u9Hq4X8V7VY) so that you get familiar with the environment and understand the capabilities.
 
 # Some concepts
 
@@ -98,7 +98,7 @@ After saving and running it, there's an error:
 
 ![Backup error](/img/Automating_database_backups_with_Universal_Automation_and_dbatools/BackupError.png)
 
-Well of course it is not recognized. This is a [dbatools](https://dbatools.io/) command, and since we are running on a container that does not have dbatools installed by default, we have to install it.
+Well, of course it is not recognized. This is a [dbatools](https://dbatools.io/) command, and since we are running on a container that does not have dbatools installed by default, we have to install it.
 
 ## Installing dbatools on the container
 
@@ -116,13 +116,13 @@ Running the same script again on UA, it now runs successfully!
 
 # Scheduling the backup script
 
-Let's consider that this script has to execute everyday, twice a day: at 10am and at 6pm.
+Let's consider that this script has to execute every day, twice a day: at 10 am and at 6 pm.
 
 Going back to our script, we can find a schedule option inside the 3 dots on the top right.
 
 ![Schedule](/img/Automating_database_backups_with_Universal_Automation_and_dbatools/Schedule.png)
 
-There are many options baked int already, such as running every minute, every hour, etc.
+There are many options baked in it already, such as running every minute, every hour, etc.
 In this case, none of those options match our criteria.
 But there's another tab called CRON.
 That's the one that will be used.
@@ -134,7 +134,7 @@ After creating as many schedules as we want, we can see all our schedules by goi
 
 ![schedule list](/img/Automating_database_backups_with_Universal_Automation_and_dbatools/schedule_list.png)
 
-With this, we have our backup script running everyday at 10am and 6pm, without us having to remember that we need to execute the script.
+With this, we have our backup script running everyday at 10 am and 6 pm, without us having to remember that we need to execute the script.
 
 # Viewing jobs executions and results
 
@@ -144,21 +144,21 @@ Here's an example of a script that I've scheduled to run every minute:
 
 ![schedule results](/img/Automating_database_backups_with_Universal_Automation_and_dbatools/schedule_sample.png)
 
-And the results can be seen by clicking on the view button.
+And the results can be seen by clicking on the `view` button.
 The result looks like this:
 
 ![job result](/img/Automating_database_backups_with_Universal_Automation_and_dbatools/Job_result.png)
 
 # Bonus - Leveraging the Secrets
 
-If you navigate to the variables tab, you can see that you can add variables.
+If you navigate to the `variables` tab, you can see that you can add variables.
 This is cool if you have multiple scripts that have the same configuration (paths, names, etc).
 
 But what's also cool is that UA allows you to use secrets, meaning you can store your database credentials and avoid placing them as plain text on your scripts.
 Unfortunately, I wasn't able to make it work on the version that I'm using.
 I see no errors, it says the secret is created successfully, but I can't see it or use it.
 
-I expect that this is something going wrong on my side, and that it's working as expected in Universal.
+I expect that this is something going wrong on my side and that it's working as expected in Universal.
 I'll update this post if I can get it working.
 
 
@@ -166,10 +166,10 @@ I'll update this post if I can get it working.
 
 With this post we've seen what's Universal Automation, Universal and the different naming/functionalities.
 
-We've then used UA through a Docker container, created a script to backup our database and scheduled it to run twice a day, everyday.
+We've then used UA through a Docker container, created a script to backup our database and scheduled it to run twice a day, every day.
 
 Hopefully this was a good introduction for you to understand the power of Universal and how you can leverage from it to make your work easier.
 
-On a side note, something that I've found really amazing is that, UA was running in a container, and my database is on another container, and it simply worked out of the box!
+On a side note, something that I've found really amazing is that UA was running in a container, and my database is on another container, and it simply worked out of the box!
 
 Thanks for reading!
