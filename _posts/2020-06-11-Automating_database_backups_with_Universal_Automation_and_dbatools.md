@@ -158,8 +158,13 @@ But what's also cool is that UA allows you to use secrets, meaning you can store
 Unfortunately, I wasn't able to make it work on the version that I'm using.
 I see no errors, it says the secret is created successfully, but I can't see it or use it.
 
-I expect that this is something going wrong on my side and that it's working as expected in Universal.
+~~I expect that this is something going wrong on my side and that it's working as expected in Universal.~~
+
 I'll update this post if I can get it working.
+
+UPDATE: So after talking with Adam Driscoll ([t](https://twitter.com/adamdriscoll)), turns out that Universal Automation relies on `Microsoft.PowerShell.SecretManagement` module, which currently only works on Windows.
+This means that, when there's a working version of this module on other platforms, Universal will allow you to store your secrets as well!
+The good news is that if you use Windows, you can already leverage from it. 
 
 
 # Wrapping up
