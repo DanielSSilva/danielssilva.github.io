@@ -160,7 +160,7 @@ Following the instructions that we saw on the "New agent":
 * The agent pool is the name of the pool you've created.
 
 By the end of the configuration, you should have something like this:
-![agent registration](img\Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines\agent_registration.png)
+![agent registration](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines/agent_registration.png)
 
 
 If you go back to your project settings > Pipelines > Agent Pools > select the pool you've created > Agents, you should see your raspberryPi there, although it's Offline.
@@ -173,7 +173,7 @@ You now have two ways of running it:
 For this example, we will go with the first approach and I'll leave the "running as a service" for Part 2.
 
 By running `run.sh`, we can see that the pi is now online on Azure DevOps website
-![agent online](img\Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines\agent_online.png)
+![agent online](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines/agent_online.png)
 
 All it's left to do in order to see if everything is working is having some code to be compiled and published
 
@@ -212,7 +212,7 @@ If you left the pi running the `run.sh` script, you should now see that it's run
 ### Confirming that's running on our raspberry
 Go ahead and open the pipeline job to check how it's going.
 If you select the "Initialize job", you can see that it's using the agent.
-![Job running](img\Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines\job_running.png)
+![Job running](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines/job_running.png)
 
 ### Checking the deployed artifact
 Because on our YAML we specified that we wanted to drop an artifact, we can in fact access that artifact on our raspberry, since it's our agent.
