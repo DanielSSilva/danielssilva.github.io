@@ -20,14 +20,14 @@ It's a pretty straight forward process, especially since you only have to follow
 
 After finishing the module, the summary shows you some links that can help you through your journey.
 One of which was the [Self-hosted Linux agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops). 
-I've opened it just for curiosity, and here's what I've found.
+I've opened it just by curiosity, and here's what I've found.
 Here's a screenshot of the supported distributions at the time of this writing:
 ![linux supported OS](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines\supported.png)
 
 Notice the note 2:
 > ARM instruction set ARMv7 or above is required
 
-It requires and ARMv7 or above, which means we can only work with the Pi 2 model B and later (excluding the pi 0 and 0w, since they have ARMv6). 
+It requires an ARMv7 or above, which means we can only work with the Pi 2 model B and later (excluding the pi 0 and 0w, since they have ARMv6). 
 For this series (yes, there will be more than 1 post about this), we'll use the pi 2b, 3b and 4b.
 
 # Why did I find the need to use my RaspberryPi as an Agent
@@ -59,7 +59,7 @@ If you are working on your own projects, you can have something like "MyOrg" as 
 
 But let's consider the following example: If I have a company that works for other clients, I would probably have one organization for each client, and under that, all the projects for each client (organization).
 
-These two concepts (organization and project) are important because there are settings that are under the organization (which means that they affect/can be used by every project), and settings that are under each project (meaning other projects under the same organization cannot see/use it).
+These two concepts (organization and project) are important because there are settings that are under the organization (which means that they affect/can be used by every project), and settings that are under each project (meaning other projects under the same organization cannot see/use them).
 
 ## Understand what is an agent and an agent pool
 As a (overly) simplified explanation, think of an agent as some sort of machine capable of receiving a request to run a build and execute it. It can be your computer, a VM, a server, or as in this case, a raspberry Pi, etc.
@@ -76,7 +76,7 @@ Notice that this is free of charge!
 ### Generate a Personal Access Token (PAT)
 A PAT is the way that your agent will be able to authenticate to Azure DevOps and start receiving jobs.
 
-In order to generate the PAT, go to your account settings > Personal Access Tokens
+In order to generate the PAT, go to your Azure DevOps account settings > Personal Access Tokens
 
 Create a new token and select the following:
 
@@ -119,7 +119,7 @@ In this example, because we are using C#, we'll need dotnet.
 
 On their [module exercise](https://docs.microsoft.com/en-us/learn/modules/host-build-agent/4-create-build-agent), Microsoft has an helper [script to install the dependencies required](https://raw.githubusercontent.com/MicrosoftDocs/mslearn-azure-pipelines-build-agent/master/build-tools.sh) for the project used. 
 
-I've adapted that script to only download dotnet 3.1, since it is the only tool we need (for now.)
+I've adapted that script to only download dotnet 3.1, since it is the only tool we need (for now).
 
 As with everything on the Internet, you should first check what the script does and only run if you trust it.
 
