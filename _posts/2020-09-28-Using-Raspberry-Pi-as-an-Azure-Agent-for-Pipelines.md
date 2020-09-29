@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using RaspberryPi as as an Azure agent for Pipelines (Part 1)
+title: Using RaspberryPi as an Azure agent for Pipelines (Part 1)
 tags: [RaspberryPi, DevOps, Azure]
 comments: true
 ---
