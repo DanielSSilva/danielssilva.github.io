@@ -176,7 +176,7 @@ Here's how it looks:
 Playbooks can be executed by running `ansible-playbook playbookname.yaml`.
 ALthough, if you go ahead and run this, you will get an error:
 
-![ansible hosts fail](/img/playbook-host-error.png)
+![ansible hosts fail](/img/A-very-small-introduction-to-ansible/playbook-host-error.png)
 
 This happens because ansible has a configuration file called `ansible.cfg`, which has some default configurations.
 One of such configurations is the location of the inventory (the file where we defined our hosts).
@@ -191,12 +191,12 @@ inventory = hosts.ini
 ```
 
 If we try to run the playbook again:
-![playbook run](/img/playbookrun.png)
+![playbook run](/img/A-very-small-introduction-to-ansible/playbookrun.png)
 
 Ok so it's all green, seems good!
 Let's make sure that all files have been copied, the "old school" manual way:
 
-![checking playbook result manually](/img/checking_playbook_result.png)
+![checking playbook result manually](/img/A-very-small-introduction-to-ansible/checking_playbook_result.png)
 
 # Wrapping up
 
