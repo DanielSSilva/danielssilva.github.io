@@ -26,7 +26,7 @@ In this case, because I want to execute the same steps across different machines
 There are many different ways to [install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) across different operating systems.
 For me, the best way to install it is through pip (the package installer for python), since it works on every operating system.
 
-Note: If you are on Windows and don't want to deal with all the headaches of getting python to work on Windows (through Anaconda or other softwares), I strongly suggest you give WSL a try.
+Note: If you are on Windows and don't want to deal with all the headaches of getting python to work on Windows (through Anaconda or other softwares), I strongly suggest you give [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) a try.
 
 It's suggested that you used python3.
 In case you don't have pip installed, you can easily install it by running the following: `sudo apt install python3-pip`.
@@ -34,8 +34,8 @@ Then you can run `sudo pip3 install ansible`, and once it finishes you are ready
 
 # SSH Setup
 
-Ansbile requires you to have a passwordless ssh authentication. 
-In case you are not familiar with it, essentially you store your public key on the server you are trying to connect to, and use your private key to autenhicate yourself (don't quote me on this, I'm not totally familiar with SSH, but that's my understanding).
+Ansible requires you to have a passwordless ssh authentication. 
+In case you are not familiar with it, essentially you store your public key on the server you are trying to connect to, and use your private key to authenticate yourself (don't quote me on this, I'm not totally familiar with SSH, but that's my understanding).
 You can find multiple tutorials on how to achieve this, but here's a quick way to do so (huge thanks to Andrew Pruski ([b](https://dbafromthecold.com/)|[t](https://twitter.com/dbafromthecold)) for the tips for ssh):
 
 1. create a new ssh key pair using `ssh-keygen`
@@ -63,7 +63,7 @@ Host k8s-node-3
 1. you can now simply do ssh control1 and you are in!
 # Hosts
 
-Because Ansible can target multiple hosts, it needs to know who is it going to connect to.
+Because Ansible can target multiple hosts, it needs to know who it is going to connect to.
 Ansible has a concept of "inventory", which is essentially a list of hosts.
 By default, that list is located on `/etc/ansible/hosts`, but you can override it by having a `hosts.ini` file and make Ansible target that.
 
@@ -71,7 +71,7 @@ By default, that list is located on `/etc/ansible/hosts`, but you can override i
 
 In this case we are using the `.ini` extension (you can also use YAML or other [inventory plugins](https://docs.ansible.com/ansible/latest/plugins/inventory.html#inventory-plugins)).
 
-The basic stucture is as follows:
+The basic structure is as follows:
 
 ```bash
 [myServers]
@@ -87,7 +87,7 @@ Here's it in action by running `ansible -i defaultHosts.ini defaults -m ping -u 
 
 ![ping ansible module](/img/A-very-small-introduction-to-ansible/pingAnsible.png)
 
-In this case, we simple sent a ping to all our servers on `defaultHosts.ini` and they all answered with a "pong".
+In this case, we simply sent a ping to all our servers on `defaultHosts.ini` and they all answered with a "pong".
 
 NOTE: In case you misconfigure the ssh passwordless authentication, you will get an error such as this one:
 
@@ -95,7 +95,7 @@ NOTE: In case you misconfigure the ssh passwordless authentication, you will get
 
 ## Group hosts by name
 
-Another useful way declare our hosts is by grouping them.
+Another useful way to declare our hosts is by grouping them.
 In this example I have a raspberry which is the one that controls the cluster and 3 others that are nodes on that cluster.
 
 For that reason, it might be useful to separate them into 2 groups: control and nodes.
@@ -133,3 +133,75 @@ This way I can do the following:
 1. Target both controls and nodes: `ansible -i hosts.ini all -m ping -u daniel`
 
 # Playbooks
+
+This is where the fun starts.
+Playbooks can be seen as a list of tasks of what Ansible has to do on the host(s).
+I really like this definition that's present on [Ansible's documentation](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html):
+
+> If Ansible modules are the tools in your workshop, playbooks are your instruction manuals, and your inventory of hosts are your raw material.
+
+Ansible has a lot of builtin modules.
+For this example we will use two: ping and copy.
+Let's create a playbook that pings the control server and copies a file, and then let's do the same for the node servers.
+
+Here's how it looks:
+
+```YAML
+---
+- name: ping and copy file to control
+  hosts: control
+
+  tasks:
+  - name: ping control
+    ping:
+
+  - name: Copy a file to control
+    copy:
+      src: /home/daniel/Documents/ansible/controlFile.txt
+      dest: /home/daniel/controlFile.txt
+
+- name: ping and copy file to nodes 
+  hosts: nodes
+  
+  tasks:
+  - name: ping node
+    ping:
+
+  - name: Copy a file to node
+    copy:
+      src: /home/daniel/Documents/ansible/nodeFile.txt
+      dest: /home/daniel/nodeFile.txt
+```
+
+Playbooks can be executed by running `ansible-playbook playbookname.yaml`.
+ALthough, if you go ahead and run this, you will get an error:
+
+![ansible hosts fail](/img/playbook-host-error.png)
+
+This happens because ansible has a configuration file called `ansible.cfg`, which has some default configurations.
+One of such configurations is the location of the inventory (the file where we defined our hosts).
+Check the [documentation](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#ansible-configuration-settings-locations) to know more about this.
+
+If we don't want to change this setting globally, we can create an `ansible.cfg` file on the same level as the playbook.
+Create a new `ansible.cfg` with the following content, where hosts.ini is the name of the inventory file that you previously created:
+
+```bash
+[defaults]
+inventory = hosts.ini
+```
+
+If we try to run the playbook again:
+![playbook run](/img/playbookrun.png)
+
+Ok so it's all green, seems good!
+Let's make sure that all files have been copied, the "old school" manual way:
+
+![checking playbook result manually](/img/checking_playbook_result.png)
+
+# Wrapping up
+
+As I've mentioned, this is just an introduction reference for my second part of "Using RaspberryPi as an Azure agent for Pipelines" series, where I will be using a more useful playbook.
+
+If you want more blog posts about Ansible, let me know by reaching out on [twitter](https://twitter.com/DanielSilv9), [linkedIn](https://www.linkedin.com/in/danielssilva) or create a GitHub issue on my [Presentations repository](https://github.com/DanielSSilva/Presentations/issues).
+
+Thanks for reading!
