@@ -28,7 +28,7 @@ Repeating the previous task 3 more times, would not only consume some time, but 
 While I was studying this topic, I found that you can also deploy agents to containers (we will cover that in a 3rd part).
 You can deploy it to containers by essentially [running a script that Microsoft made](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#create-and-build-the-dockerfile-1) that will do all of the previous steps for you, and run the config with an "unattended" switch.
 
-That seems a promising way to overcome the burden of having to configure all of those steps again and again.
+That seems to be a promising way to overcome the burden of having to configure all of those steps again and again.
 However, there were some changes that I've had to make to that script so that it worked in our case, as we will see next. 
 Even so, we still have to figure a way to run this script on each host.
 
@@ -75,7 +75,7 @@ If we head to our pool on Azure DevOps, we can see that all nodes are up and run
 If you are reading this article, chances are that you want to either have your own agent to speed up testing, or you probably want to speed up the pipelines process by running multiple pipelines at the same time.
 
 Keep in mind that running parallel jobs might have some additional costs.
-Take a look a this image (this can be found on project settings > Pipelines > Parallel jobs):
+Take a look at this image (this can be found on project settings > Pipelines > Parallel jobs):
 
 ![parallel jobs](img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/parallel_jobs.png)
 
