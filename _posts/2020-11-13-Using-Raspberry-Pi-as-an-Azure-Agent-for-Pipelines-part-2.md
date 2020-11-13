@@ -64,11 +64,11 @@ To execute the playbook we just need to run the following command: `ansible-play
 
 Here is a screenshot of the playbook result:
 
-![playbook result](img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/playbook_result.png)
+![playbook result](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/playbook_result.png)
 
 If we head to our pool on Azure DevOps, we can see that all nodes are up and running.
 
-![agents pool](img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/agents_pool.png)
+![agents pool](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/agents_pool.png)
 
 # Running multiple pipelines at the same time
 
@@ -77,13 +77,13 @@ If you are reading this article, chances are that you want to either have your o
 Keep in mind that running parallel jobs might have some additional costs.
 Take a look at this image (this can be found on project settings > Pipelines > Parallel jobs):
 
-![parallel jobs](img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/parallel_jobs.png)
+![parallel jobs](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/parallel_jobs.png)
 
 In this case, because I've created this project as public, I have unlimited parallel jobs!
 
 Let's run some pipelines and see if they are actually running in parallel (note, you can clone/fork [this repository](https://github.com/DanielSSilva/CI-CD-Rpi), which is the same that I've used on part 1). I has the 4 pipelines that are running here:
 
-![agents running](img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/agents_running.png)
+![agents running](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/agents_running.png)
 
 As you can see, all the pipelines waited for less than 1 second before being assigned to an agent and started running.
 
