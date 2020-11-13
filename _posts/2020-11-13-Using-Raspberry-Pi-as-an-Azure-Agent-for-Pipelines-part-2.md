@@ -41,7 +41,7 @@ In short: we will use Ansible playbooks to automate the whole previous process.
 
 ### The playbook
 
-You can find the playbook [here](https://github.com/DanielSSilva/AzPipelines_selfHosted), along with the rest of the files needed to successfully deploy an agent.
+You can find the playbook [here](https://github.com/DanielSSilva/AzPipelines_selfHosted/tree/main/2_multipleSelfHostedAgent), along with the rest of the files needed to successfully deploy an agent.
 
 This playbook will:
 
@@ -81,7 +81,7 @@ Take a look at this image (this can be found on project settings > Pipelines > P
 
 In this case, because I've created this project as public, I have unlimited parallel jobs!
 
-Let's run some pipelines and see if they are actually running in parallel (note, you can clone/fork [this repository](https://github.com/DanielSSilva/CI-CD-Rpi), which is the same that I've used on part 1). I has the 4 pipelines that are running here:
+Let's run some pipelines and see if they are actually running in parallel (you can clone/fork [this repository](https://github.com/DanielSSilva/CI-CD-Rpi), which is the same that I've used on part 1). It has the 4 pipelines that are running here:
 
 ![agents running](/img/Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines-Part2/agents_running.png)
 
@@ -103,7 +103,7 @@ On the playbook:
   * `args: chdir`: the `svc.sh` script requires that the command is executed from the same directory of that file. `chdir` specified the path on which the command will be when it's executed. 
 
 Regarding the `downloadAndInstallAgent.sh` script:
-* I've tried to simplify the [original script](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#create-and-build-the-dockerfile-1), by using constants instead of environment variables. I've also changed the hardcoded URL to download the installer from `platform=linux-x64` to `linux-arm64`
+* I've tried to simplify the [original script](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#create-and-build-the-dockerfile-1), by using constants instead of environment variables. I've also changed the hardcoded URL to download the installer from `platform=linux-x64` to `platform=linux-arm64`
 
 
 # Wrapping up
