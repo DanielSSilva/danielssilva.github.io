@@ -15,7 +15,7 @@ I will be focusing on the YAML instead of GUI for three main reasons:
 
 # Schema of the YAML file
 
-[Microsoft docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema) has an extensive explaination about the schema and everything that is supported.
+[Microsoft docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema) has an extensive explanation about the schema and everything that is supported.
 This is my go-to when I have questions about schema/features.
 
 Let's start with the concepts.
@@ -41,7 +41,7 @@ Let's break it down into what each element does:
 * *pool*: Defines which pool the pipeline should run on. You can run on a Microsoft-Hosted pool or on a private pool. For new we will use the Microsoft-hosted pool, but on a future post we will see how to create our own, but if you are really curious, you can check my [Using RaspberryPi as an Azure agent for Pipelines (Part 1)](https://danielssilva.dev/2020-09-28-Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines/) post.
 * *jobs*: The pipeline can have multiple jobs. Unless stated otherwise (by using the dependsOn parameter), jobs run in parallel. Each job has *steps*, which are defined into one or many *tasks*
 
-# Project strucute
+# Project structure
 
 For the sake of simplicity, let's say we have a simple C# console application that outputs a greeting message given the user name as parameter.
 You can find this project on my Azure DevOps project repository called [AzDevOpsSeries](https://dev.azure.com/danielssilvadev/_git/AzDevOpsSeries) 
@@ -159,9 +159,9 @@ After running the pipeline, if everything went as expected, you should see somet
 
 Key points:
 * 1 - Here you can see all the jobs that ran and drill down into each job
-* 2 - Useful information regaring when did the pipeline started and what was its' duration
+* 2 - Useful information regarding when did the pipeline started and what was its' duration
 * 3 - The published artifact. In this case it will be the zip of the GreeterApp
-* 4 - Tests results and code coverage. I'll dedicate a post just for the code coverage part.
+* 4 - Test results and code coverage. I'll dedicate a post just for the code coverage part.
 
 # Wrapping up
 In this post, I've shared with you how to define a pipeline through YAML, as well as setting it up on Azure DevOps and running it. 
