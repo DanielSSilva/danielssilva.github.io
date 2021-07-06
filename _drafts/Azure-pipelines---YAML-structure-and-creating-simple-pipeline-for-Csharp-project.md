@@ -6,7 +6,7 @@ tags: [Azure Pipelines, DevOps]
 comments: true
 ---
 
-Azure pipelines can be created through GUI or through a YAML file.
+Azure pipelines can be created through a GUI or through a YAML file.
 I will be focusing on the YAML instead of GUI for three main reasons:
 
 * It is being favored over the GUI
@@ -37,13 +37,13 @@ jobs:
 
 Let's break it down into what each element does:
 
-* *trigger*: as the name implies, here you configure what will trigger your pipeline. The [documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#triggers) has a lot of information, but in short, there are 4 trigger types: Push, Pull Request, Scheduled and Pipeline. Because this point itself can be a blog post, I will dedicate one just for this. For now, we can set this to "none", meaning it will never be triggered (you have to call it manually).
-* *pool*: Defines which pool the pipeline should run on. You can run on a Microsoft-Hosted pool or on a private pool. For new we will use the Microsoft-hosted pool, but on a future post we will see how to create our own, but if you are really curious, you can check my [Using RaspberryPi as an Azure agent for Pipelines (Part 1)](https://danielssilva.dev/2020-09-28-Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines/) post.
+* *trigger*: as the name implies, here you configure what will trigger your pipeline. The [documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#triggers) has a lot of information, but in short, there are 4 trigger types: Push, Pull Request, Scheduled and Pipeline. Because this point itself can be a blog post, I will dedicate one just for this. For now, we can set this to "none", meaning it will never be triggered (but you can call it manually).
+* *pool*: Defines on which pool the pipeline should run. You can run on a Microsoft-Hosted pool or on a private pool. For now we will use the Microsoft-hosted pool, but on a future post we will see how to create our own, but if you are really curious, you can check my [Using RaspberryPi as an Azure agent for Pipelines (Part 1)](https://danielssilva.dev/2020-09-28-Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines/) post.
 * *jobs*: The pipeline can have multiple jobs. Unless stated otherwise (by using the dependsOn parameter), jobs run in parallel. Each job has *steps*, which are defined into one or many *tasks*
 
 # Project structure
 
-For the sake of simplicity, let's say we have a simple C# console application that outputs a greeting message given the user name as parameter.
+For the sake of simplicity, let's say we have a simple C# console application that outputs a greeting message given the user name as a parameter.
 You can find this project on my Azure DevOps project repository called [AzDevOpsSeries](https://dev.azure.com/danielssilvadev/_git/AzDevOpsSeries) 
 
 Now, because we don't like broken things, we add a simple unit test to make sure that the method is returning what's expected.
@@ -114,7 +114,7 @@ You can find more info on [the docs](https://docs.microsoft.com/en-us/azure/devo
 * **nugetConfigPath**: Path to the nuget.config, relative to the root of the repo
 
 The last two inputs are only used for restore (or when using dotnet build without restoring first).
-Now all we have to do is to repeat this tasks for the proper commands we want to run.
+Now all we have to do is to repeat these tasks for the proper commands we want to run.
 
 Here's the final result
 <script src="https://gist.github.com/DanielSSilva/0c7905e516d91fda29053d6e3271584b.js"></script>
@@ -129,12 +129,12 @@ I've used three "things" that you might not be familiar:
 The first two are variables.
 One will be defined by us (buildConfiguration), which will allow us to change between *Debug* and *Release* without the need to change the YAML and commit changes.
 The second is a [predefined variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml), which gives us the directory where our artifacts are published by default.
-Speaking of which, the artifacts are published (meaning become available outside of the agent) by running the task mentioned in the third point.
+Speaking of which, the artifacts are published (meaning they become available outside of the agent) by running the task mentioned in the third point.
 
 # Creating the _**actual**_ pipeline
 
 So far, what we've done was to define what our pipeline will do.
-But we need to create the pipeline that will run.
+But we need to create the pipeline that will run it.
 
 1. In Azure DevOps, navigate to the project and then go to Pipelines > Create Pipeline
 1. Because I'm using azure Repos on the same project, I'll select that option
@@ -166,4 +166,5 @@ Key points:
 # Wrapping up
 In this post, I've shared with you how to define a pipeline through YAML, as well as setting it up on Azure DevOps and running it. 
 
-I hope that this was helpful, and make sure to keep an eye on [my post about my journey through Azure Pipelines.]({{ site.baseurl }}{% post_url 2021-06-29-A-journey-through-Azure-Pipelines---Deploy-faster-with-more-quality-and-confidence %})
+<!-- I hope that this was helpful, and make sure to keep an eye on [my post about my journey through Azure Pipelines.]({{ site.baseurl }}{% post_url 2021-06-29-A-journey-through-Azure-Pipelines---Deploy-faster-with-more-quality-and-confidence %}) -->
+

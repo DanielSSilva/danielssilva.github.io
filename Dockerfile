@@ -1,8 +1,8 @@
 FROM jekyll/jekyll
 
-COPY --chown=jekyll:jekyll Gemfile .
-COPY --chown=jekyll:jekyll Gemfile.lock .
+# COPY --chown=jekyll:jekyll Gemfile .
+# COPY --chown=jekyll:jekyll Gemfile.lock .
 
-RUN bundle install --quiet --clean
+#RUN bundle install --quiet --clean
 
-CMD ["jekyll", "serve"]
+CMD ["jekyll", "serve", "--force_polling", "--drafts"]
