@@ -29,4 +29,4 @@ This blog post can be seen as the intro and entry point to check for everything 
 
 # References
 
-* Azure pipelines - YAML structure and creating simple pipeline to build and test C# project (later today)
+* [Azure pipelines - YAML structure and creating simple pipeline to build and test C# project]({{ site.baseurl }}{% post_url 2021-07-10-Azure-pipelines---YAML-structure-and-creating-simple-pipeline-for-Csharp-project.md %}) 
