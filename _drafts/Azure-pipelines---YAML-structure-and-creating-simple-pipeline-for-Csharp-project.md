@@ -37,7 +37,7 @@ jobs:
 
 Let's break it down into what each element does:
 
-* *trigger*: as the name implies, here you configure what will trigger your pipeline. The [documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#triggers) has a lot of information, but in short, there are 4 trigger types: Push, Pull Request, Scheduled and Pipeline. Because this point itself can be a blog post, I will dedicate one just for this. For now, we can set this to "none", meaning it will never be triggered (but you can call it manually).
+* *trigger*: as the name implies, here you configure what will trigger your pipeline. The [documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#triggers) has a lot of information, but in short, there are 4 trigger types: **_Push_**, **_Pull Request_**, **_Scheduled_** and **_Pipeline_**. Just this first element itself can be a blog post. For now, we can set this to "**_none_**", meaning it will never be triggered (but you can call it manually).
 * *pool*: Defines on which pool the pipeline should run. You can run on a Microsoft-Hosted pool or on a private pool. For now we will use the Microsoft-hosted pool, but on a future post we will see how to create our own, but if you are really curious, you can check my [Using RaspberryPi as an Azure agent for Pipelines (Part 1)](https://danielssilva.dev/2020-09-28-Using-Raspberry-Pi-as-an-Azure-Agent-for-Pipelines/) post.
 * *jobs*: The pipeline can have multiple jobs. Unless stated otherwise (by using the dependsOn parameter), jobs run in parallel. Each job has *steps*, which are defined into one or many *tasks*
 
@@ -46,9 +46,9 @@ Let's break it down into what each element does:
 For the sake of simplicity, let's say we have a simple C# console application that outputs a greeting message given the user name as a parameter.
 You can find this project on my Azure DevOps project repository called [AzDevOpsSeries](https://dev.azure.com/danielssilvadev/_git/AzDevOpsSeries) 
 
-Now, because we don't like broken things, we add a simple unit test to make sure that the method is returning what's expected.
+We don't like broken things, so let's add a simple unit test to make sure that the method is returning what's expected.
 
-So our project structure is the following:
+The project structure is the following:
 ```
 GreeterProject
 |
@@ -62,7 +62,7 @@ GreeterProject
 ```
 
 # Creating our pipeline
-Because we want to keep it in source control, let's keep it within our project repository.
+Since we want to keep our pipeline it in source control, let's keep it within our project repository.
 
 ```
 GreeterProject
@@ -83,7 +83,7 @@ The goal for our pipeline is to restore, build, test and publish our GreeterApp.
 
 ## Creating the YAML file
 
-In order to keep this simple, we want to trigger the pipeline manually, and use one of the free Microsoft agents.
+In order to keep this simple, we want to trigger the pipeline manually, and use one of the free Microsoft agents, in this case with Windows.
 
 This can be achieved with the following:
 
@@ -95,7 +95,7 @@ pool:
   vmImage: 'windows-latest'
 ```
 
-Because our tasks have dependencies (we don't want to publish without testing, etc), we will use 1 job with multiple tasks.
+In this case, the tasks have dependencies (we don't want to publish without testing, etc), so we will use 1 job with multiple tasks.
 
 Since we are using .NET, we will use the `DotNetCoreCLI@2` task.
 You can find more info on [the docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/dotnet-core-cli?view=azure-devops), but here's an example of how we can restore our project:
@@ -108,9 +108,9 @@ You can find more info on [the docs](https://docs.microsoft.com/en-us/azure/devo
       feedsToUse: config
       nugetConfigPath: ./nuget.config 
 ```
-* **command**: This is the command that you usually use within dotnet, such as dotnet build, dotnet test, etc
+* **command**: This is the command that you usually use within dotnet, such as _build_, _test_, etc
 * **projects**: Specify the project, a list of projects or the sln to use (relative to the root of the repository)
-* **feedsToUse**: Because I have a nuget.config, I select config
+* **feedsToUse**: In this case we have a nuget.config, so I select config
 * **nugetConfigPath**: Path to the nuget.config, relative to the root of the repo
 
 The last two inputs are only used for restore (or when using dotnet build without restoring first).
@@ -137,7 +137,7 @@ So far, what we've done was to define what our pipeline will do.
 But we need to create the pipeline that will run it.
 
 1. In Azure DevOps, navigate to the project and then go to Pipelines > Create Pipeline
-1. Because I'm using azure Repos on the same project, I'll select that option
+1. Since I'm using azure Repos on the same project, I'll select that option
 1. Then select the respective repository
 1. And on the "Configure your pipeline", select "Existing Azure Pipelines YAML file"
 ![](/img\Azure-pipelines---YAML-structure-and-creating-simple-pipeline-for-Csharp-project\existingYaml.png)
@@ -149,7 +149,7 @@ It should look like this.
 
 ![](/img\Azure-pipelines---YAML-structure-and-creating-simple-pipeline-for-Csharp-project\buildConfiguration.png)
 
-Because we want our pipelines to run with Release by default, that's the specified value.
+We want our pipelines to run with Release by default, so that's the specified value.
 Also make sure to tick the "Let users override this value when running this pipeline" so that you can generate builds with Debug.
 
 You can now save and run the pipeline.
@@ -166,5 +166,4 @@ Key points:
 # Wrapping up
 In this post, I've shared with you how to define a pipeline through YAML, as well as setting it up on Azure DevOps and running it. 
 
-<!-- I hope that this was helpful, and make sure to keep an eye on [my post about my journey through Azure Pipelines.]({{ site.baseurl }}{% post_url 2021-06-29-A-journey-through-Azure-Pipelines---Deploy-faster-with-more-quality-and-confidence %}) -->
 
