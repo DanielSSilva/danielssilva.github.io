@@ -7,7 +7,7 @@ comments: true
 ---
 
 In the previous post, we've created a simple pipeline that builds and tests our application.
-We know that our tests ran successfully, but that's all we know. We don't actually know how much code we are testing.
+We know that our tests ran successfully, but that's all. We don't actually know how much code we are testing.
 
 # What's code coverage
 
@@ -41,7 +41,7 @@ This means:
 
 * Add a the `coverlet.msbuild` nuget package to the test project
 
-On the terminal, go to the root of the repository and run 
+Go to the root of the repository and run (through your terminal) 
 
 ```bash
 dotnet new tool-manifest
@@ -60,7 +60,8 @@ This will add an entry to the previously created json file.
 Finally, add the `coverlet.msbuild` package to the test project, in this case:
 
 ```bash
-dotnet add GreeterProject/GreeterTests/GreeterTests.csproj package coverlet.msbuild
+cd GreeterProject/GreeterTests/
+dotnet add package coverlet.msbuild
 ```
 
 We are now ready to test if we can get code coverage by running the tests locally.
@@ -109,7 +110,7 @@ Here's a gif showing you just that (you can also check it yourself by [heading t
 
 # Important note!
 
-Although I haven't mentioned stages yet (will do it later on this series), one important thing to keep in mind is that the code coverage tab will only show when the pipeline finishes.
+You can organize your pipelines with different stages. This allows you to have different configurations/rules according to your needs. I will cover stages on another post, but one important thing to keep in mind is that the code coverage tab will only show when the pipeline finishes.
 This means that if you have a build and a deploy stage, this tab will only show after the deploy runs (or is cancelled).
 
 From my understanding, a pipeline is considered to be "finished" if there are no pending jobs, regardless if the jobs failed or succeeded.
