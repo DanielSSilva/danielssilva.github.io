@@ -6,7 +6,7 @@ tags: [Azure Pipelines, DevOps]
 comments: true
 ---
 
-In the [previous post]({{ site.baseurl }}{% post_url 2021-07-10-Azure-pipelines---YAML-structure-and-creating-simple-pipeline-for-Csharp-project %}) , we've created a simple pipeline that builds and tests our application.
+In the [previous post]({{ site.baseurl }}{% post_url 2021-07-10-Azure-pipelines---YAML-structure-and-creating-simple-pipeline-for-Csharp-project %}), we've created a simple pipeline that builds and tests our application.
 We know that our tests ran successfully, but that's all. We don't actually know how much code we are testing.
 
 # What's code coverage
