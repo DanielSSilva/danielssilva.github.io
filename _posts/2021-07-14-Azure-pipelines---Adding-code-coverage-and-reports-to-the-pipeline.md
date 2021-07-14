@@ -28,7 +28,7 @@ I want the application to be cross platform and to compile on any supported plat
 Coverlet generates the reports as XML files, allowing users to select different output code coverage formats such as Cobertura and JaCoCo, which are the ones supported by Azure Pipelines.
 
 The final step is to generate a report that's easily readable by humans, hence we convert it to HTML.
-For that, we use the [ReportGenerator](https://github.com/danielpalme/ReportGenerator)
+For that, we use the [ReportGenerator](https://github.com/danielpalme/ReportGenerator).
 
 ## Prepare the repository
 
